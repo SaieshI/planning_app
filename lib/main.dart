@@ -35,28 +35,25 @@ class MyApp extends Stateless Widget{
   }
 }
 
-class PlanManagerScreen extends StatefullWidget{
+class PlanManagerScreen extends StatefulWidget{
   const PlanManagerScreen({super.key});
   
   @override
-  planManagerState createState() => planManagerState(); 
+  PlanManagerState createState() => PlanManagerState(); 
 }
 
-class planManagerState extends State<PlanManagerScreen>{
+class planManaPlanManagerStategerState extends State<PlanManagerScreen>{
   List<Plan> plans = [];
 
-  late CalendarFormat calendarFormat 
+  late CalendarFormat calendarFormat;
   late DateTime highlightDay;
   late DateTime selectedDate; 
 
   @override
-  void initState(){ 
+  void initState() {
     super.initState();
-    if (widget.initialPlan != null) {
-      controllerName.text = widget.initialPlan!.name ;
-      controllerDescription.text = widget.initialPlan!.description;
-      selectedDate = widget.initialPlan!.date; 
-    }
+    selectedDate = DateTime.now(); // Initialize with today's date
+    calendarFormat = CalendarFormat.month; // Default format for calendar
   }
 
   void save() { 
@@ -73,6 +70,25 @@ class planManagerState extends State<PlanManagerScreen>{
 
   @override
   Widget build(BuildContext context) {
-    
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        children: [
+          TextField(
+            controller: controllerName, 
+            decoration: const InputDecoration(labelText: 'Plan Name'),
+          ),
+          TextField(
+            controller: controllerDescription, 
+            decoration: const InputDecoration(labelText: 'Description'),
+          ),
+          Row(
+            children: [
+              
+            ]
+          )
+        ]
+      )
+    )
   }
 }
